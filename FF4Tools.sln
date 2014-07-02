@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FF4Archiver", "FF4Archiver\FF4Archiver.vcxproj", "{2E2AB041-4929-448C-BC53-438B7E0AFFE0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0734331C-32E4-406E-A37F-7850A8DAEBE7} = {0734331C-32E4-406E-A37F-7850A8DAEBE7}
+		{21821F67-2BB0-4B6D-97A0-3AEF9EBD1F8B} = {21821F67-2BB0-4B6D-97A0-3AEF9EBD1F8B}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CompressionLibrary", "CompressionLibrary\CompressionLibrary.vcxproj", "{21821F67-2BB0-4B6D-97A0-3AEF9EBD1F8B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CommonLibs", "CommonLibs\CommonLibs.vcxproj", "{0734331C-32E4-406E-A37F-7850A8DAEBE7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FF4Decompressor", "FF4Decompressor\FF4Decompressor.vcxproj", "{0FA3D3C2-9782-4EEB-9368-343D57470C1C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E2AB041-4929-448C-BC53-438B7E0AFFE0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2E2AB041-4929-448C-BC53-438B7E0AFFE0}.Debug|Win32.Build.0 = Debug|Win32
+		{2E2AB041-4929-448C-BC53-438B7E0AFFE0}.Release|Win32.ActiveCfg = Release|Win32
+		{2E2AB041-4929-448C-BC53-438B7E0AFFE0}.Release|Win32.Build.0 = Release|Win32
+		{21821F67-2BB0-4B6D-97A0-3AEF9EBD1F8B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{21821F67-2BB0-4B6D-97A0-3AEF9EBD1F8B}.Debug|Win32.Build.0 = Debug|Win32
+		{21821F67-2BB0-4B6D-97A0-3AEF9EBD1F8B}.Release|Win32.ActiveCfg = Release|Win32
+		{21821F67-2BB0-4B6D-97A0-3AEF9EBD1F8B}.Release|Win32.Build.0 = Release|Win32
+		{0734331C-32E4-406E-A37F-7850A8DAEBE7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0734331C-32E4-406E-A37F-7850A8DAEBE7}.Debug|Win32.Build.0 = Debug|Win32
+		{0734331C-32E4-406E-A37F-7850A8DAEBE7}.Release|Win32.ActiveCfg = Release|Win32
+		{0734331C-32E4-406E-A37F-7850A8DAEBE7}.Release|Win32.Build.0 = Release|Win32
+		{0FA3D3C2-9782-4EEB-9368-343D57470C1C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0FA3D3C2-9782-4EEB-9368-343D57470C1C}.Debug|Win32.Build.0 = Debug|Win32
+		{0FA3D3C2-9782-4EEB-9368-343D57470C1C}.Release|Win32.ActiveCfg = Release|Win32
+		{0FA3D3C2-9782-4EEB-9368-343D57470C1C}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
