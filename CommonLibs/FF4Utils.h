@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-
 #include <boost/filesystem/path.hpp>
 
 namespace ff4psp
@@ -12,6 +11,7 @@ namespace ff4psp
 		{
 			boost::filesystem::path path(const std::string& str);
 			boost::filesystem::path path(const char* str);
+			std::string to_utf8(const std::wstring& original);
 		}
 	}
 	

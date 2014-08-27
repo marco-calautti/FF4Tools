@@ -14,13 +14,16 @@ int main(int argc, char* argv[])
 		
 		ff4psp::FF4Archive archive("e:\\temp\\PAC0.bin","e:\\temp\\PAC1.bin");
 
-		const ff4psp::ArchiveNode* root=archive.getRoot();
+		ff4psp::ArchiveNode* root=archive.getRoot();
 
-		const ff4psp::ArchiveNode* node=archive.getNodeFromPath("data/menu/monster/ms_005.lzs");
+		//ff4psp::ArchiveNode* node=archive.getNodeFromPath("data/menu/monster/ms_005.lzs");
 
 		//archive.extract(root,"e:\\temp\\FF4");
 
-		archive.import(root,"e:\\temp\\FF4\\");
+		archive.import(root,"e:\\temp\\PAC\\");
+
+		archive.build("e:\\temp\\PAC\\");
+
 	}catch(const ff4psp::FF4Exception& ex)
 	{
 		std::cout<<ex.what()<<std::endl;

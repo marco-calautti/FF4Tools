@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C++ Express 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FF4Archiver", "FF4Archiver\FF4Archiver.vcxproj", "{2E2AB041-4929-448C-BC53-438B7E0AFFE0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{0734331C-32E4-406E-A37F-7850A8DAEBE7} = {0734331C-32E4-406E-A37F-7850A8DAEBE7}
@@ -12,6 +14,12 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CommonLibs", "CommonLibs\CommonLibs.vcxproj", "{0734331C-32E4-406E-A37F-7850A8DAEBE7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FF4Decompressor", "FF4Decompressor\FF4Decompressor.vcxproj", "{0FA3D3C2-9782-4EEB-9368-343D57470C1C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FF4MiniArchiver", "FF4MiniArchiver\FF4MiniArchiver.vcxproj", "{34FA91F4-0328-4D6F-9C0E-56EE80B2E9BA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0734331C-32E4-406E-A37F-7850A8DAEBE7} = {0734331C-32E4-406E-A37F-7850A8DAEBE7}
+		{21821F67-2BB0-4B6D-97A0-3AEF9EBD1F8B} = {21821F67-2BB0-4B6D-97A0-3AEF9EBD1F8B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +43,10 @@ Global
 		{0FA3D3C2-9782-4EEB-9368-343D57470C1C}.Debug|Win32.Build.0 = Debug|Win32
 		{0FA3D3C2-9782-4EEB-9368-343D57470C1C}.Release|Win32.ActiveCfg = Release|Win32
 		{0FA3D3C2-9782-4EEB-9368-343D57470C1C}.Release|Win32.Build.0 = Release|Win32
+		{34FA91F4-0328-4D6F-9C0E-56EE80B2E9BA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{34FA91F4-0328-4D6F-9C0E-56EE80B2E9BA}.Debug|Win32.Build.0 = Debug|Win32
+		{34FA91F4-0328-4D6F-9C0E-56EE80B2E9BA}.Release|Win32.ActiveCfg = Release|Win32
+		{34FA91F4-0328-4D6F-9C0E-56EE80B2E9BA}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

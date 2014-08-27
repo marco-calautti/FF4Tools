@@ -27,12 +27,12 @@ namespace ff4psp
 		/**
 		* Returns the root node of this archive. If the archive is empty, the root has no children.
 		*/
-		const ArchiveNode* getRoot() const { return root.get(); }
+		ArchiveNode* getRoot() const { return root.get(); }
 
 		/**
 		* Returns the ArchiveNode rooted in the directory/file "path". A path is of the form "data/monster/ms_01.lzs", or "data/message". If the given path does not exist in the archive, NULL is returned.
 		*/
-		const ArchiveNode* getNodeFromPath(const std::string& path) const;
+		ArchiveNode* getNodeFromPath(const std::string& path) const;
 
 		/**
 		* Extracts in "outputDirectory" all the files inside the ArchiveNode "path". If "path" is a file, it just extracts the file. Note that if "path" refers to a directory "dir", the extraction tree
@@ -44,8 +44,10 @@ namespace ff4psp
 		/**
 		* Imports the directory tree rooted in "inputDirectory" (except for the root "inputDirectory" itself) into the ArchiveNode "path". Returns the new node after the import.
 		*/
-		const ArchiveNode* import(const ArchiveNode* path,
+		void import(ArchiveNode* path,
 					const std::string& inputDirectory);
+
+		void build(const std::string& path) const;
 
 	private:
 

@@ -6,7 +6,6 @@
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 
-#include "FF4SourcedArchiveNode.h"
 #include "FF4ArchiveNodeImpl.h"
 #include "FF4Archive.h"
 #include "FF4Internals.h"
@@ -77,24 +76,39 @@ void ff4psp::FF4Archive::constructRootNode(ff4psp::impl::ArchiveNodeImpl* node,
 	}
 }
 
-const ff4psp::ArchiveNode* ff4psp::FF4Archive::getNodeFromPath(const std::string& path) const
+ff4psp::ArchiveNode* ff4psp::FF4Archive::getNodeFromPath(const std::string& path) const
 {
 	impl::NodeRetrieveVisitor visitor;
-	return visitor.visit(root.get(),path);
+	return visitor.visit(root.get(), path);
 }
 
 void ff4psp::FF4Archive::extract(const ArchiveNode* path, 
 								 const std::string& outputDirectory) const
 {
 	impl::ExtractionVisitor<impl::DecompressFilter> visitor;
-	visitor.visit(path,outputDirectory);
+	visitor.visit(const_cast<ArchiveNode*>(path), outputDirectory);
 }
 
-const ff4psp::ArchiveNode* ff4psp::FF4Archive::import(const ArchiveNode* path,
+void ff4psp::FF4Archive::import(ArchiveNode* path,
 								const std::string& inputDirectory)
 {
 	impl::ImportVisitor visitor;
-	std::unique_ptr<ArchiveNode> newNode=visitor.visit(path,inputDirectory);
+	visitor.visit(path, inputDirectory);
 
-	return nullptr;
+}
+
+void ff4psp::FF4Archive::build(const std::string& path) const
+{
+	boost::filesystem::path indexPath(path);
+	indexPath = indexPath / "PAC0.bin";
+
+	boost::filesystem::path archivePath(path);
+	archivePath = archivePath / "PAC1.bin";
+
+	boost::filesystem::ofstream indexStream(indexPath, std::ios::out | std::ios::binary);
+	boost::filesystem::ofstream archiveStream(archivePath, std::ios::out | std::ios::binary);
+
+	impl::BuildVisitor<impl::CompressFilter> visitor(indexStream);
+
+	visitor.visit(root.get(),archiveStream);
 }

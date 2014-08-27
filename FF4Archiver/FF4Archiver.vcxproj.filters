@@ -24,9 +24,6 @@
     <ClCompile Include="FF4Archive.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="FF4Utils.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
     <ClCompile Include="FF4NodeSource.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
@@ -39,6 +36,9 @@
     <ClCompile Include="ArchiveNodeImpl.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="sha2.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FF4Archive.h">
@@ -47,19 +47,10 @@
     <ClInclude Include="FF4Internals.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="FF4Exceptions.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="FF4ArchiveNode.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="FF4ArchiveVisitors.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="FF4Utils.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="FF4SourcedArchiveNode.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="FF4NodeSource.h">
@@ -69,6 +60,9 @@
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="FF4ArchiveNodeImpl.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="sha2.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>

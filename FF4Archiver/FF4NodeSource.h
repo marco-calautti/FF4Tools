@@ -4,12 +4,12 @@
 
 namespace ff4psp
 {
-	namespace impl
-	{
 		class NodeSource
 		{
 		public:
-			NodeSource(const std::string& name, long off, long s);
+			typedef enum{Original,File} SourceType;
+
+			NodeSource(const std::string& name, long off, long s,SourceType type);
 
 		private:
 			NodeSource(const NodeSource& src){}
@@ -17,15 +17,17 @@ namespace ff4psp
 			NodeSource& operator=(const NodeSource& src){ return *this; }
 
 		public:
-			std::istream& getStream() { return stream; }
+			size_t read(char* buffer, size_t count);
 
 			long getSize() const { return size; }
+
+			SourceType getType(){ return type;  }
 
 		private:
 			std::string filename;
 			boost::filesystem::ifstream stream;
 			long offset;
 			long size;
+			SourceType type;
 		};
-	}
 }
