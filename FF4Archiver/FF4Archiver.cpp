@@ -10,15 +10,19 @@
 
 void printUsage()
 {
-	std::cout << "Usage:\t-extract index_file data_file out_directory" << std::endl;
-	std::cout << "\t-import index_file data_file dest_path=source_path[,dest_path=source_path]" << std::endl;
+	std::cout << "PAC Archive manager for FF4CC - Phoenix, SadNES cITy Translations" << std::endl << std::endl;
+	std::cout << "Usage: ";
+	std::cout << "\t-extract index_file data_file out_directory" << std::endl;
+	std::cout << "\t-import index_file data_file import_list" << std::endl << std::endl;
+	std::cout << "where import_list: ";
+	std::cout << "dest_path=source_path[,dest_path=source_path]" << std::endl;
+	std::cout << "ex. /data/message=c:\\FF4\\data\\message,/data/title.lzs=c:\\FF4\\data\\title.lzs" << std::endl;
 }
 
 int main(int argc, char* argv[])
 {
 	try
 	{
-
 		if (argc != 5)
 		{
 			printUsage();
@@ -57,7 +61,7 @@ int main(int argc, char* argv[])
 
 			boost::filesystem::path tempArchive = boost::filesystem::unique_path("%%%%_%%%%.tmp");
 
-			archive.build(tempIndex.string(), tempArchive.string());
+			archive.build(ff4psp::utils::encodings::path_string(tempIndex), ff4psp::utils::encodings::path_string(tempArchive));
 
 			boost::filesystem::rename(tempIndex, argv[2]);
 			boost::filesystem::rename(tempArchive, argv[3]);

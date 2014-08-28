@@ -41,7 +41,7 @@ namespace ff4psp
 					std::unique_ptr<NodeSource> source = node->createNodeSource();
 
 					TFilter filter;
-					filter(source.get(),filePath.string());
+					filter(source.get(), ff4psp::utils::encodings::path_string(filePath));
 					return ;
 				}
 
@@ -55,7 +55,7 @@ namespace ff4psp
 						try{ boost::filesystem::create_directory(fullPath); }
 						catch(...){ FF4Exception::raise("Could not create directory. Check if the output directory does exist and it is accessible."); }
 					}
-					std::string path = fullPath.string();
+					std::string path = ff4psp::utils::encodings::path_string(fullPath);
 					visit(node->getChild(i),path);
 				}
 			}

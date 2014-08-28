@@ -59,7 +59,7 @@ void ff4psp::impl::DecompressFilter::operator()(NodeSource* source, const std::s
 
 	boost::filesystem::path p=ff4psp::utils::encodings::path(path);
 
-	if(p.extension().string() != ".lzs")
+	if (ff4psp::utils::encodings::path_string(p.extension()) != ".lzs")
 	{
 		normalFilter(source,path);
 		return;
@@ -122,7 +122,7 @@ int ff4psp::impl::CompressFilter::operator()(NodeSource* source, const ArchiveNo
 
 	boost::filesystem::path p = ff4psp::utils::encodings::path(node->getName());
 
-	if (p.extension().string() != ".lzs" || source->getType()==NodeSource::SourceType::Original)
+	if (ff4psp::utils::encodings::path_string(p.extension()) != ".lzs" || source->getType() == NodeSource::SourceType::Original)
 	{
 		return normalFilter(source, node, checksum, stream);
 	}

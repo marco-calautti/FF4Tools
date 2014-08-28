@@ -59,7 +59,7 @@ void ff4psp::impl::ImportVisitor::_visit(ArchiveNode* current, const boost::file
 
 	if(current->isFile())
 	{
-		current->setSourceFile(inputPath.string());
+		current->setSourceFile(ff4psp::utils::encodings::path_string(inputPath));
 		return;
 	}
 

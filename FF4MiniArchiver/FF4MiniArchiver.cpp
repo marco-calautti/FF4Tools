@@ -183,7 +183,7 @@ void create(const std::string& archive, const std::string& inputDir)
 	std::vector<MiniRecord> records;
 	for (size_t i = 0; i < files.size(); i++)
 	{
-		std::string name = ff4psp::utils::encodings::to_utf8(files[i].filename().wstring());
+		std::string name = ff4psp::utils::encodings::path_string(files[i].filename());
 
 		int index;
 		std::string typeString, filename;
