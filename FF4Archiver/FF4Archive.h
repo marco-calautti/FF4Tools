@@ -47,7 +47,7 @@ namespace ff4psp
 		void import(ArchiveNode* path,
 					const std::string& inputDirectory);
 
-		void build(const std::string& path) const;
+		void build(const std::string& indexPath,const std::string& archivePath) const;
 
 	private:
 

@@ -5,26 +5,87 @@
 #include <iostream>
 #include <string>
 
-#include <boost/program_options.hpp>
+#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string/classification.hpp>
+
+void printUsage()
+{
+	std::cout << "Usage:\t-extract index_file data_file out_directory" << std::endl;
+	std::cout << "\t-import index_file data_file dest_path=source_path[,dest_path=source_path]" << std::endl;
+}
 
 int main(int argc, char* argv[])
 {
 	try
 	{
-		
+
+		if (argc != 5)
+		{
+			printUsage();
+			return 0;
+		}
+		std::string message = "Illegal parameter ";
+		if (strcmp(argv[1], "-extract") == 0)
+		{
+			ff4psp::FF4Archive archive(argv[2], argv[3]);
+			if (!boost::filesystem::exists(argv[4]))
+				boost::filesystem::create_directories(argv[4]);
+			archive.extract(archive.getRoot(), argv[4]);
+		}
+		else if (strcmp(argv[1], "-import") == 0)
+		{
+			ff4psp::FF4Archive archive(argv[2], argv[3]);
+
+			std::vector<std::string> importStrings;
+			boost::split(importStrings, argv[4], boost::is_any_of(","));
+
+			if (importStrings.size() == 0)
+				throw std::exception((message += argv[4]).c_str());
+
+			for (size_t i = 0; i < importStrings.size(); i++)
+			{
+				std::string str = importStrings[i];
+				std::vector<std::string> pair;
+				boost::split(pair, str, boost::is_any_of("="));
+				if (pair.size() != 2)
+					throw std::exception((message += str).c_str());
+
+				ff4psp::ArchiveNode* node = archive.getNodeFromPath(pair[0]);
+				archive.import(node, pair[1]);
+			}
+			boost::filesystem::path tempIndex = boost::filesystem::unique_path("%%%%_%%%%.tmp");
+
+			boost::filesystem::path tempArchive = boost::filesystem::unique_path("%%%%_%%%%.tmp");
+
+			archive.build(tempIndex.string(), tempArchive.string());
+
+			boost::filesystem::rename(tempIndex, argv[2]);
+			boost::filesystem::rename(tempArchive, argv[3]);
+
+		}
+		else
+		{
+			message += argv[1];
+			throw std::exception(message.c_str());
+		}
+
+		/*
 		ff4psp::FF4Archive archive("e:\\temp\\PAC0.bin","e:\\temp\\PAC1.bin");
 
 		ff4psp::ArchiveNode* root=archive.getRoot();
 
-		//ff4psp::ArchiveNode* node=archive.getNodeFromPath("data/menu/monster/ms_005.lzs");
+		ff4psp::ArchiveNode* node=archive.getNodeFromPath("data/menu/monster/ms_005.lzs");
 
 		//archive.extract(root,"e:\\temp\\FF4");
 
-		archive.import(root,"e:\\temp\\PAC\\");
+		archive.import(node,"e:\\temp\\PAC\\data\\menu\\monster\\ms_005.lzs");
 
-		archive.build("e:\\temp\\PAC\\");
-
-	}catch(const ff4psp::FF4Exception& ex)
+		archive.build("e:\\temp\\PAC\\");*/
+	}
+	catch (const ff4psp::FF4Exception& ex)
+	{
+		std::cout << ex.what() << std::endl;
+	}catch(const std::exception& ex)
 	{
 		std::cout<<ex.what()<<std::endl;
 	}

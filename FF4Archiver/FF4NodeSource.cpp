@@ -1,11 +1,12 @@
 #include "FF4NodeSource.h"
 #include "FF4Utils.h"
 
-ff4psp::NodeSource::NodeSource(const std::string& name, long off, long s, SourceType t)  : filename(name), offset(off), size(s)
+ff4psp::NodeSource::NodeSource(const std::string& name, long off, long s, SourceType t) : filename(name), 
+																						  offset(off), 
+																						  size(s), 
+																						  stream(ff4psp::utils::encodings::path(filename), std::ios::in | std::ios::binary)
 {
 	type = t;
-	boost::filesystem::path p = ff4psp::utils::encodings::path(filename);
-	stream.open(p,std::ios::in|std::ios::binary);
 	stream.seekg(offset);	
 
 }

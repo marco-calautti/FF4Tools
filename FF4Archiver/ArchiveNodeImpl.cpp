@@ -46,7 +46,7 @@ void ff4psp::impl::ArchiveNodeImpl::setSourceFile(const std::string& filename, l
 
 std::unique_ptr<ff4psp::NodeSource> ff4psp::impl::ArchiveNodeImpl::createNodeSource() const
 {
-	return std::move(std::unique_ptr<NodeSource>(new NodeSource(sourceFilename, offset, filesize,type)));
+	return std::unique_ptr<NodeSource>(new NodeSource(sourceFilename, offset, filesize,type));
 }
 
 void ff4psp::impl::ArchiveNodeImpl::getChecksum(char chck[CHECKSUM_SIZE]) const

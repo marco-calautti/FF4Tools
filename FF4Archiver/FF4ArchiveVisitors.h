@@ -189,8 +189,6 @@ namespace ff4psp
 							archiveStream.write(buf, pad);
 						}
 
-						//header.archive_full_size += fileInfo.file_full_size;
-
 					}
 
 					fileInfos.push_back(fileInfo);

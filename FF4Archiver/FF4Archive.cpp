@@ -97,13 +97,12 @@ void ff4psp::FF4Archive::import(ArchiveNode* path,
 
 }
 
-void ff4psp::FF4Archive::build(const std::string& path) const
+void ff4psp::FF4Archive::build(const std::string& iPath, const std::string& aPath) const
 {
-	boost::filesystem::path indexPath(path);
-	indexPath = indexPath / "PAC0.bin";
+	boost::filesystem::path indexPath(iPath);
+	
 
-	boost::filesystem::path archivePath(path);
-	archivePath = archivePath / "PAC1.bin";
+	boost::filesystem::path archivePath(aPath);
 
 	boost::filesystem::ofstream indexStream(indexPath, std::ios::out | std::ios::binary);
 	boost::filesystem::ofstream archiveStream(archivePath, std::ios::out | std::ios::binary);

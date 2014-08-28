@@ -20,6 +20,8 @@ ff4psp::ArchiveNode* ff4psp::impl::NodeRetrieveVisitor::visit(ArchiveNode* root,
 	std::string element;
 	const ArchiveNode* node=root;
 
+	getline(ss, element, '/'); //strip the first slash
+
 	while(getline(ss,element,'/'))
 	{
 		bool found=false;
@@ -38,7 +40,7 @@ ff4psp::ArchiveNode* ff4psp::impl::NodeRetrieveVisitor::visit(ArchiveNode* root,
 
 bool ff4psp::impl::NodeRetrieveVisitor::isValidPath(const std::string& path) const
 {
-	return true;
+	return path.size() > 0 && path[0] == '/';
 }
 
 void ff4psp::impl::ImportVisitor::visit(ArchiveNode* node, const std::string& inputDirectory)

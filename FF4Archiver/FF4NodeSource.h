@@ -12,6 +12,7 @@ namespace ff4psp
 			NodeSource(const std::string& name, long off, long s,SourceType type);
 
 		private:
+			
 			NodeSource(const NodeSource& src){}
 			
 			NodeSource& operator=(const NodeSource& src){ return *this; }
