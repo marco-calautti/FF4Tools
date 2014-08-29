@@ -31,21 +31,29 @@ int main(int argc, char* argv[])
 		std::string message = "Illegal parameter ";
 		if (strcmp(argv[1], "-extract") == 0)
 		{
+			std::cout << "Opening archive..." << std::endl;
 			ff4psp::FF4Archive archive(argv[2], argv[3]);
+
 			if (!boost::filesystem::exists(argv[4]))
 				boost::filesystem::create_directories(argv[4]);
+
+			std::cout << "Extracting files, please wait..." << std::endl;
 			archive.extract(archive.getRoot(), argv[4]);
+			std::cout << "Extraction complete!" << std::endl;
 		}
 		else if (strcmp(argv[1], "-import") == 0)
 		{
-			ff4psp::FF4Archive archive(argv[2], argv[3]);
-
+			
 			std::vector<std::string> importStrings;
 			boost::split(importStrings, argv[4], boost::is_any_of(","));
 
 			if (importStrings.size() == 0)
 				throw std::exception((message += argv[4]).c_str());
 
+			std::cout << "Opening archive..." << std::endl;
+			ff4psp::FF4Archive archive(argv[2], argv[3]);
+
+			std::cout << "Parsing import list..." << std::endl;
 			for (size_t i = 0; i < importStrings.size(); i++)
 			{
 				std::string str = importStrings[i];
@@ -57,6 +65,8 @@ int main(int argc, char* argv[])
 				ff4psp::ArchiveNode* node = archive.getNodeFromPath(pair[0]);
 				archive.import(node, pair[1]);
 			}
+
+			std::cout << "Rebuilding archive, please wait..." << std::endl;
 			boost::filesystem::path tempIndex = boost::filesystem::unique_path("%%%%_%%%%.tmp");
 
 			boost::filesystem::path tempArchive = boost::filesystem::unique_path("%%%%_%%%%.tmp");
@@ -65,7 +75,7 @@ int main(int argc, char* argv[])
 
 			boost::filesystem::rename(tempIndex, argv[2]);
 			boost::filesystem::rename(tempArchive, argv[3]);
-
+			std::cout << "Build complete!" << std::endl;
 		}
 		else
 		{
