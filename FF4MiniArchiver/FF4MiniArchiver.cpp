@@ -189,7 +189,7 @@ void create(const std::string& archive, const std::string& inputDir)
 		std::string typeString, filename;
 
 		if (!getInfo(name, index, typeString, filename))
-			ff4psp::FF4Exception::raise(boost::format("Not valid file name %s!") % name);
+			continue; //ff4psp::FF4Exception::raise(boost::format("Not valid file name %s!") % name);
 		
 		MiniRecord record = { 0 };
 
