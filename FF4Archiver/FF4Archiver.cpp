@@ -68,8 +68,10 @@ int main(int argc, char* argv[])
 
 			std::cout << "Rebuilding archive, please wait..." << std::endl;
 			boost::filesystem::path tempIndex = boost::filesystem::unique_path("%%%%_%%%%.tmp");
+			tempIndex = ff4psp::utils::encodings::path(argv[2]).parent_path() / tempIndex;
 
 			boost::filesystem::path tempArchive = boost::filesystem::unique_path("%%%%_%%%%.tmp");
+			tempArchive = ff4psp::utils::encodings::path(argv[3]).parent_path() / tempArchive;
 
 			archive.build(ff4psp::utils::encodings::path_string(tempIndex), ff4psp::utils::encodings::path_string(tempArchive));
 
