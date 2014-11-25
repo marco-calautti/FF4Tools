@@ -181,6 +181,7 @@ void create(const std::string& archive, const std::string& inputDir)
 	uint32_t curOffset = files.size()*sizeof(MiniRecord);
 	outStream.seekp(curOffset);
 	std::vector<MiniRecord> records;
+	int numFiles = 0;
 	for (size_t i = 0; i < files.size(); i++)
 	{
 		std::string name = ff4psp::utils::encodings::path_string(files[i].filename());
@@ -191,12 +192,15 @@ void create(const std::string& archive, const std::string& inputDir)
 		if (!getInfo(name, index, typeString, filename))
 			continue; //ff4psp::FF4Exception::raise(boost::format("Not valid file name %s!") % name);
 		
+		if (index != numFiles)
+			ff4psp::FF4Exception::raise(boost::format("Missing file with index %d!") % numFiles);
+
 		MiniRecord record = { 0 };
 
-		if (i == 0)
-			record.number_of_files = files.size();
+		//if (i == 0)
+			//record.number_of_files = files.size();
 
-		record.index = i;
+		record.index = index;
 		std::string shift_jis_string = boost::locale::conv::from_utf<char>(filename, "Shift-JIS");
 
 		strcpy(record.file_name, shift_jis_string.c_str());
@@ -234,7 +238,10 @@ void create(const std::string& archive, const std::string& inputDir)
 		curOffset += pad;
 
 		records.push_back(record);
+		numFiles++;	//just count the right files in this directory
 	}
+
+	records[0].number_of_files = numFiles;
 
 	outStream.seekp(0);
 	for (size_t i = 0; i < records.size(); i++)
