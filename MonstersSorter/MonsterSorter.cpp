@@ -74,8 +74,6 @@ void sort(std::vector<Entry>& entries, std::vector<std::string>& strings)
 	{
 		SortEntry entry;
 		entry.name_pos = entries[i].name_pointer;
-		if (entry.name_pos == 343)
-			std::cout << "";
 		entry.original_pos = i;
 		list.push_back(entry);
 	}
@@ -153,8 +151,6 @@ int main(int argc, char* argv[])
 				ebootStream.write((char*)&entries[j], sizeof(entries[j]));
 			}
 		}
-
-		ebootStream.close();
 	}
 	catch (std::exception& e)
 	{
