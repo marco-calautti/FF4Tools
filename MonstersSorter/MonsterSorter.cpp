@@ -54,14 +54,21 @@ int stringCompare(const std::string& first, const std::string& second)
 void readStrings(boost::filesystem::ifstream& stream, std::vector<std::string>& strings)
 {
 	stream.seekg(MESSAGE_MONSTERS_START*4);
+	if (!stream)
+		ff4psp::FF4Exception::raise("I/O error on message file!");
 	uint32_t pointer;
 	stream.read((char*)&pointer, 4);
+	if (!stream)
+		ff4psp::FF4Exception::raise("I/O error on message file!");
 	stream.seekg(pointer);
-
+	if (!stream)
+		ff4psp::FF4Exception::raise("I/O error on message file!");
 	for (int i = 0; i < TOTAL_MONSTERS; i++)
 	{
 		std::string monster;
 		std::getline(stream, monster, '\0');
+		if (!stream)
+			ff4psp::FF4Exception::raise("I/O error on message file!");
 		strings.push_back(monster);
 	}
 }
@@ -129,26 +136,33 @@ int main(int argc, char* argv[])
 
 		std::vector<std::string> strings;
 		readStrings(messageStream, strings);
-		messageStream.close();
 
 		for (int i = 0; i < SIZE; i++)
 		{
 			ebootStream.seekp(offsets[i].start);
+			if (!ebootStream)
+				ff4psp::FF4Exception::raise("I/O error on EBOOT file!");
 			std::vector<Entry> entries;
 
 			for (int j = 0; j < offsets[i].entries; j++)
 			{
 				Entry entry;
 				ebootStream.read((char*)&entry, sizeof(entry));
+				if (!ebootStream)
+					ff4psp::FF4Exception::raise("I/O error on EBOOT file!");
 				entries.push_back(entry);
 			}
 
 			sort(entries, strings);
 			ebootStream.seekp(offsets[i].start);
+			if (!ebootStream)
+				ff4psp::FF4Exception::raise("I/O error on EBOOT file!");
 
 			for (int j = 0; j < offsets[i].entries; j++)
 			{
 				ebootStream.write((char*)&entries[j], sizeof(entries[j]));
+				if (!ebootStream)
+					ff4psp::FF4Exception::raise("I/O error on EBOOT file!");
 			}
 		}
 	}
