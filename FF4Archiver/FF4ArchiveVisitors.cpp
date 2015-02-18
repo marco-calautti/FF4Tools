@@ -13,7 +13,7 @@
 ff4psp::ArchiveNode* ff4psp::impl::NodeRetrieveVisitor::visit(ArchiveNode* root, const std::string& path)
 {
 	if(!isValidPath(path))
-		FF4Exception::raise("The given path is not a valid path for the archive!");
+		ff4psp::FF4Exception::raise("The given path is not a valid path for the archive!");
 
 	std::istringstream ss(path);
 
@@ -55,7 +55,7 @@ void ff4psp::impl::ImportVisitor::visit(ArchiveNode* node, const std::string& in
 void ff4psp::impl::ImportVisitor::_visit(ArchiveNode* current, const boost::filesystem::path& inputPath)
 {
 	if(current->isFile() != boost::filesystem::is_regular_file(inputPath))
-		FF4Exception::raise("Cannot import a directory into a file and viceversa!");
+		ff4psp::FF4Exception::raise("Cannot import a directory into a file and viceversa!");
 
 	if(current->isFile())
 	{

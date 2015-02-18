@@ -4,7 +4,7 @@
 #include <string>
 #include <memory>
 
-#include <boost\filesystem.hpp>
+#include <boost/filesystem.hpp>
 
 #include "FF4Utils.h"
 #include "FF4NodeSource.h"

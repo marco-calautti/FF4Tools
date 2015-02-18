@@ -1,4 +1,4 @@
-#include "lzss.h"
+#include "Lzss.h"
   
 #include <cstring>
 

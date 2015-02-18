@@ -6,6 +6,7 @@
 
 #include "FF4NodeSource.h"
 #include "FF4ArchiveNodeImpl.h"
+#include "FF4Exceptions.h"
 
 namespace ff4psp
 {
@@ -53,7 +54,7 @@ namespace ff4psp
 						fullPath = fullPath / node->getChild(i)->getName();
 
 						try{ boost::filesystem::create_directory(fullPath); }
-						catch(...){ FF4Exception::raise("Could not create directory. Check if the output directory does exist and it is accessible."); }
+						catch(...){ ff4psp::FF4Exception::raise("Could not create directory. Check if the output directory does exist and it is accessible."); }
 					}
 					std::string path = ff4psp::utils::encodings::path_string(fullPath);
 					visit(node->getChild(i),path);

@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
 			boost::split(importStrings, argv[4], boost::is_any_of(","));
 
 			if (importStrings.size() == 0)
-				throw std::exception((message += argv[4]).c_str());
+				ff4psp::FF4Exception::raise((message += argv[4]).c_str());
 
 			std::cout << "Opening archive..." << std::endl;
 			ff4psp::FF4Archive archive(argv[2], argv[3]);
@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
 				std::vector<std::string> pair;
 				boost::split(pair, str, boost::is_any_of("="));
 				if (pair.size() != 2)
-					throw std::exception((message += str).c_str());
+					ff4psp::FF4Exception::raise((message += str).c_str());
 
 				ff4psp::ArchiveNode* node = archive.getNodeFromPath(pair[0]);
 				archive.import(node, pair[1]);
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 		else
 		{
 			message += argv[1];
-			throw std::exception(message.c_str());
+			ff4psp::FF4Exception::raise(message.c_str());
 		}
 
 		/*
