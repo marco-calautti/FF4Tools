@@ -1,4 +1,4 @@
-FF4Tools [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2372010cd5ce4ab99996ef698a3efbf5)](https://www.codacy.com/app/marco-calautti/FF4Tools?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=marco-calautti/FF4Tools&amp;utm_campaign=Badge_Grade)
+FF4Tools [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4bb5f73ba00d42fea3fc06470245ff61)](https://www.codacy.com/gh/marco-calautti/FF4Tools/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=marco-calautti/FF4Tools&amp;utm_campaign=Badge_Grade)
 ========
 
 Toolset written in C++ to manage archives and compressed files from the game Final Fantasy 4: The Complete Collection.
