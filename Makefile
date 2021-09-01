@@ -1,6 +1,6 @@
 CC=g++
 
-XXXCFLAGS=-std=c++11 -ICommonLibs -ICompressionLibrary
+XXXCFLAGS=-std=c++11 -O2 -ICommonLibs -ICompressionLibrary
 
 SRC_COMMON = $(shell find CommonLibs CompressionLibrary -name '*.cpp' -o -name '*.c')
 SRC_ARCHIVER = $(shell find FF4Archiver -name '*.cpp' -o -name '*.c')
@@ -18,16 +18,16 @@ clean:
 	rm -f ff4archiver ff4miniarchiver ff4decompressor ff4monsterssorter
 	
 FF4Archiver:
-	$(CC) $(XXXCFLAGS) -IFF4Archiver $(LIBS) $(SRC_COMMON) $(SRC_ARCHIVER) -o ff4archiver
+	$(CC) $(XXXCFLAGS) -IFF4Archiver $(SRC_COMMON) $(SRC_ARCHIVER) $(LIBS) -o ff4archiver
 
 FF4MiniArchiver:
-	$(CC) $(XXXCFLAGS) -IFF4MiniArchiver $(LIBS) $(SRC_COMMON) $(SRC_MINIARCHIVER) -o ff4miniarchiver
+	$(CC) $(XXXCFLAGS) -IFF4MiniArchiver $(SRC_COMMON) $(SRC_MINIARCHIVER) $(LIBS) -o ff4miniarchiver
 	
 FF4Decompressor:
-	$(CC) $(XXXCFLAGS) -IFF4Decompressor $(LIBS) $(SRC_COMMON) $(SRC_DECOMPRESSOR) -o ff4decompressor
+	$(CC) $(XXXCFLAGS) -IFF4Decompressor $(SRC_COMMON) $(SRC_DECOMPRESSOR) $(LIBS) -o ff4decompressor
 
 FF4MonstersSorter:
-	$(CC) $(XXXCFLAGS) -IMonstersSorter $(LIBS) $(SRC_COMMON) $(SRC_SORTER) -o ff4monsterssorter
+	$(CC) $(XXXCFLAGS) -IMonstersSorter $(SRC_COMMON) $(SRC_SORTER) $(LIBS) -o ff4monsterssorter
 
 install:
 	chmod +x ff4archiver ff4miniarchiver ff4decompressor ff4monsterssorter

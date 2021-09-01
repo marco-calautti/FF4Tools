@@ -1,6 +1,6 @@
 CC=g++
 
-XXXCFLAGS=-std=c++11 -ICommonLibs -ICompressionLibrary -static
+XXXCFLAGS=-std=c++11 -O2 -ICommonLibs -ICompressionLibrary -static
 
 SRC_COMMON = $(shell find CommonLibs CompressionLibrary -name '*.cpp' -o -name '*.c')
 SRC_ARCHIVER = $(shell find FF4Archiver -name '*.cpp' -o -name '*.c')
