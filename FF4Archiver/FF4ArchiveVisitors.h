@@ -114,7 +114,7 @@ namespace ff4psp
 				header.names_table_size = namesIndex;
 				header.records = recordCounter;
 				header.archive_full_size = sizeof(header)+records.size()*sizeof(Record)+fileInfos.size()*sizeof(FileInfo)+namesIndex;
-				header.archive_full_size = header.archive_full_size / 0x800 + (header.archive_full_size % 0x800 == 0 ? 0 : 1);
+				header.archive_full_size = (header.archive_full_size + 0x7FF) / 0x800;
 				header.archive_full_size *= 0x800;
 				//write index file
 				indexStream.write((char*)&header, sizeof(header));
@@ -176,7 +176,7 @@ namespace ff4psp
 						std::unique_ptr<NodeSource> source = child->createNodeSource();
 						fileInfo.file_real_size=filter(source.get(), child, reinterpret_cast<char*>(fileInfo.sha_256), archiveStream);
 
-						fileInfo.file_full_size = child->isFile() ? (fileInfo.file_real_size / 0x800 + 1) * 0x800 : 0;
+						fileInfo.file_full_size = child->isFile() ? ((fileInfo.file_real_size + 0x7FF)/0x800) * 0x800) : 0;
 
 						fileInfo.file_offset = filesOffset;
 						filesOffset += fileInfo.file_full_size;
