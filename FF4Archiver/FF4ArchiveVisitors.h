@@ -176,7 +176,7 @@ namespace ff4psp
 						std::unique_ptr<NodeSource> source = child->createNodeSource();
 						fileInfo.file_real_size=filter(source.get(), child, reinterpret_cast<char*>(fileInfo.sha_256), archiveStream);
 
-						fileInfo.file_full_size = child->isFile() ? ((fileInfo.file_real_size + 0x7FF)/0x800) * 0x800) : 0;
+						fileInfo.file_full_size = child->isFile() ? (((fileInfo.file_real_size + 0x7FF)/0x800) * 0x800) : 0;
 
 						fileInfo.file_offset = filesOffset;
 						filesOffset += fileInfo.file_full_size;
